@@ -1,6 +1,5 @@
 package com.softserve.edu.teachua.pages.user;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -19,13 +18,11 @@ public class LoggedDropdown {
         initElements();
     }
 
-    // TODO
     private void initElements() {
-        addClubLink = driver.findElement(By.cssSelector("//TODO"));
-        addCenterLink = driver.findElement(By.cssSelector("//TODO"));
-        searchCertificatesLink = driver.findElement(By.cssSelector("//TODO"));
-        personalProfileLink = driver.findElement(By.cssSelector("//TODO"));
-        signOutLink = driver.findElement(By.cssSelector("//TODO"));
+        // TODO Pre-requirement: locate the logged-in menu items.
+        // Follow the same pattern as GuestDropdown: find each link inside the open dropdown
+        // and assign addClubLink, addCenterLink, searchCertificatesLink,
+        // personalProfileLink and signOutLink.
     }
 
     // Page Object

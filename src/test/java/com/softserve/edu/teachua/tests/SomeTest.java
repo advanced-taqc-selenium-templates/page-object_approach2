@@ -1,7 +1,6 @@
 package com.softserve.edu.teachua.tests;
 
 import com.softserve.edu.teachua.data.Challengies;
-import com.softserve.edu.teachua.data.Cities;
 import com.softserve.edu.teachua.data.ClubContents;
 import com.softserve.edu.teachua.data.CommentContents;
 import com.softserve.edu.teachua.pages.challenge.ChallengeTeachPage;
@@ -9,8 +8,6 @@ import com.softserve.edu.teachua.pages.challenge.YoutubeFrame;
 import com.softserve.edu.teachua.pages.club.AdvancedClubPage;
 import com.softserve.edu.teachua.pages.club.ClubComponent;
 import com.softserve.edu.teachua.pages.club.ClubDetailsPage;
-import com.softserve.edu.teachua.pages.club.ClubPage;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -18,38 +15,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 public class SomeTest extends TestRunner {
-
-    @Test
-    public <T> void checkTeachChallenge() {
-        YoutubeFrame youtubeFrame = loadApplication()
-                .gotoTeachChallengePage()
-                .gotoYoutubeFrame();
-        //
-        // TODO Check Youtube Frame
-    }
-
-    private static Stream<Arguments> challengeProvider() {
-        return Stream.of(
-                Arguments.of("Навчайся")
-        );
-    }
-
-    public static Object[][] challengeProvider2() {
-        return new Object[][]{
-                {"Навчайся"}
-        };
-    }
-
-    @ParameterizedTest(name = "{index} => challengeName={0}")
-    @MethodSource("challengeProvider")
-    public void checkChallenge(String challengeName) {
-        YoutubeFrame youtubeFrame = loadApplication()
-                .gotoChallengePage(challengeName, ChallengeTeachPage.class)
-                .gotoYoutubeFrame();
-        //
-        // TODO Check Youtube Frame
-    }
-
 
     private static Stream<Arguments> challengeTeachProvider() {
         return Stream.of(
@@ -63,29 +28,9 @@ public class SomeTest extends TestRunner {
         YoutubeFrame youtubeFrame = loadApplication()
                 .gotoChallengePage(challengeName, ChallengeTeachPage.class)
                 .gotoYoutubeFrame();
-        //
-        // TODO Check Youtube Frame
+        // TODO Task 1: assert the URL that the YouTube element points to.
+        // Use youtubeFrame.getYoutubeLinkText() and the link stored for challengeName.
     }
-
-    private static Stream<Arguments> cityProvider() {
-        return Stream.of(
-                Arguments.of(Cities.KYIV_CITY),
-                Arguments.of(Cities.HARKIV_CITY)
-        );
-    }
-
-    @ParameterizedTest(name = "{index} => city={0}")
-    @MethodSource("cityProvider")
-    public void checkCityClubs(Cities city) {
-        ClubComponent ClubComponent = loadApplication()
-                .gotoClubPage()
-                .chooseCity(city)
-                .getClubContainer()
-                .getFirstClubComponent();
-        //
-        // TODO Check first club address
-    }
-
 
     private static Stream<Arguments> clubProvider() {
         return Stream.of(
@@ -97,13 +42,13 @@ public class SomeTest extends TestRunner {
     @ParameterizedTest(name = "{index} => clubContents={0}")
     @MethodSource("clubProvider")
     public void checkClubExist(ClubContents clubContents) {
-        ClubComponent ClubComponent = loadApplication()
+        ClubComponent clubComponent = loadApplication()
                 .gotoClubPage()
                 .chooseCity(clubContents.getCity())
                 .getClubContainer()
                 .getClubComponentByPartialTitle(clubContents.getTitle());
-        //
-        // TODO Check club titles and descriptions
+        // TODO Task 2: assert the club title and a part of the description
+        // from clubContents against clubComponent.
     }
 
     @ParameterizedTest(name = "{index} => clubContents={0}")
@@ -113,8 +58,8 @@ public class SomeTest extends TestRunner {
                 .gotoClubPage()
                 .chooseCity(clubContents.getCity())
                 .gotoAdvancedClubPage();
-        //
-        // TODO Use pagination to search club
+        // TODO Task 2: walk pagination with advancedClubPage.nextClubPagination()
+        // until the club from clubContents is present, then assert that it was found.
     }
 
     private static Stream<Arguments> commentProvider() {
@@ -123,7 +68,7 @@ public class SomeTest extends TestRunner {
         );
     }
 
-    @ParameterizedTest(name = "{index} => clubContents={0}, commentContents={0}")
+    @ParameterizedTest(name = "{index} => clubContents={0}, commentContents={1}")
     @MethodSource("commentProvider")
     public void checkCommentExist(ClubContents clubContents, CommentContents commentContents) {
         ClubDetailsPage clubDetailsPage = loadApplication()
@@ -132,7 +77,7 @@ public class SomeTest extends TestRunner {
                 .getClubContainer()
                 .getClubComponentByPartialTitle(clubContents.getTitle())
                 .openClubDetailsPage();
-        //
-        // TODO Check comment exist
+        // TODO Task 3 (optional): assert that commentContents is present
+        // in clubDetailsPage.getCommentContainer().
     }
 }

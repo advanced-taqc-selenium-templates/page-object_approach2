@@ -108,6 +108,9 @@ workspace.xml
 
 # Ignore Picture
 *.bmp
+*_screenshot.png
+*_source.html
+*_source.html.txt
 # *.png
 #*.jpg
 *.jpeg

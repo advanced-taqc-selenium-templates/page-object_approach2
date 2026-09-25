@@ -3,6 +3,10 @@ package com.softserve.edu.teachua.pages.user;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class GuestDropdown {
 
@@ -17,14 +21,9 @@ public class GuestDropdown {
     }
 
     private void initElements() {
-        // TODO AJAX element. Update next
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        // init elements
-        register = driver.findElement(By.cssSelector("li[data-menu-id*='register'] span.ant-dropdown-menu-title-content"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        register = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.cssSelector("li[data-menu-id*='register'] span.ant-dropdown-menu-title-content")));
         login = driver.findElement(By.cssSelector("li[data-menu-id*='login'] span.ant-dropdown-menu-title-content"));
     }
 

@@ -1,22 +1,21 @@
 package com.softserve.edu.teachua.data;
 
 public enum Cities {
-    DEFAULT_CITY("Київ"),
     KYIV_CITY("Київ"),
-    HARKIV_CITY("Харків");
+    KHARKIV_CITY("Харків");
 
     private Cities(String city) {
-        // TODO
+        // TODO Task 2: store the city name passed to the constructor.
     }
 
     public String getCity() {
-        // TODO
-        return "Харків";
+        // TODO Task 2: return the stored city name.
+        throw new UnsupportedOperationException("Implement Cities.getCity()");
     }
 
-        @Override
+    @Override
     public String toString() {
-        // TODO
-        return "";
+        // TODO Task 2: return the city name.
+        return name();
     }
 }
